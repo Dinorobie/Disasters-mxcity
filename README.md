@@ -10,7 +10,7 @@ Mexico City is one of cities that has suffered the most from meteorological and 
 5) Create a JavaScript for interactive web visualization of the different map layers
 
 ### Concept idea
-[!Imagen](Imagen)
+[!Imagen](https://github.com/Robie94/Disasters-mxcity/blob/main/Captura%20de%20Pantalla%202021-07-13%20a%20la(s)%2023.43.34.png)
 
 
 
