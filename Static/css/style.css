@@ -1,7 +1,59 @@
-html,
-body,
-#map-id {
+html, body, #container {
   height: 100%;
-  padding: 0;
-  margin: 0;
+  overflow: hidden;
+  width: 100%;
+  border: 4px solid red;
 }
+body {
+  /* height of .navbar, customize with @navbar-height variable */
+  padding-top: 50px;
+}
+.navbar {
+  min-height: 50px;
+}
+.select {
+  min-height: 50px;
+  border: 4px solid red;
+}
+
+#description {
+  border: 4px solid rgb(98, 0, 255);
+  height: 20%;
+  width: 100%;
+}
+#map {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  height: 70%;
+  width: 50%;
+  float: left;
+  border: 4px solid rgb(166, 255, 0);
+}
+
+#graph{
+  border: 4px solid green;
+  overflow: hidden;
+  height: 35%;
+  width: 50%;
+  
+}
+
+#table{
+  border: 4px solid rgb(128, 0, 85);
+  height: 35%;
+  width: 50%;;
+  float: right;
+}
+
+
+
+.sidebar-wrapper {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+@media (max-width: 767px) {
+#sidebar {
+  display: none;
+}
+}
+
