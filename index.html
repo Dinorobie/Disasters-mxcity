@@ -1,14 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>CDMX Risk-Atlas</title>
+<html>
+  <head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.label/leaflet.label.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+      <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css"> 
+  </head>
 
-  <!-- Leaflet CSS -->
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li>
+              <a>Menu item 1</a>
+            </li>
+            <li>
+              <a>Menu item 2</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="container">
+      <!-- <div id="sidebar">
+        <div class="sidebar-wrapper">
+          <div id="features" class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Sidebar header</h3>
+            </div>
+          </div>
+        </div>
+      </div> -->
+     
 
-</head>
-<body>
+      <div id="description" >
+        <h3>Description</h3>
+      </div>
 
-</body>
+      <div class="select">
+        <h5>Select District:</h5>
+        <select id="selDataset"  style="width: 100px" >         
+        </select>
+      </div>
+      <br>
+      
+      <div id="map"></div>
+      <div id="graph" > 
+        <h3>Graph</h3>
+      </div>
+      <div id="table" > 
+        <h3>Table</h3>
+      </div>  
+      
 
+
+    </div>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet-src.js"></script>
+    <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
+    
+  <!-- API Key -->
+    <script type="text/javascript" src="static/js/config.js"></script>
+
+  <!-- Our JavaScript -->
+  <script type="text/javascript" src="static/js/logic.js"></script>
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    
+
+  </body>
 </html>
