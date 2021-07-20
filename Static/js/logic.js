@@ -1,7 +1,7 @@
 /// Create the createMap function
 var myMap = L.map("map", {
-  center: [19.334955176460703, -99.19755666947482],
-  zoom: 11
+  center: [19.378389743260904, -99.1405631170717],
+  zoom: 10
 });
 
 myMap.invalidateSize();
