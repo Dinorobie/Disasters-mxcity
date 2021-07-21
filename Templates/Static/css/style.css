@@ -12,11 +12,7 @@ body {
   min-height: 50px;
   background-color: rgb(33, 33, 241);
 }
-.select {
-  min-height: 100px;
-  align-content: flex-end;
-  /* border: 4px solid red; */
-}
+
 
 #header {
   background-color: rgb(6, 5, 112);
@@ -28,28 +24,36 @@ body {
 
 #map {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  height: 70%;
+  height: 90%;
   width: 60%;
   float: left;
   /* border: 4px solid rgb(166, 255, 0); */
 }
 
 #space {
-  overflow: hidden;
-  height: 70%;
+  float: left;
+  height: 90%;
   width: 2.5%; 
+   /* border: 4px solid red; */
 }
+.select {
+  overflow: hidden;
+  height: 10%;
+  width: 37.5%;
+  /* border: 4px solid red; */
+}
+
 #graph{
   /* border: 4px solid green; */
   float: right;
-  height: 35%;
+  height: 40%;
   width: 37.5%;
   
 }
 
 #table{
   /* border: 4px solid rgb(128, 0, 85); */
-  height: 35%;
+  height: 40%;
   width: 37.5%;
   float: right;
 }
