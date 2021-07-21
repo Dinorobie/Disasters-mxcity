@@ -6,15 +6,15 @@ html, body, #container {
 }
 body {
   /* height of .navbar, customize with @navbar-height variable */
-  padding-top: 50px;
+  padding-top: 40px;
 }
 .navbar {
   min-height: 50px;
-  background-color: rgb(208, 209, 209);
-  color:black;
+  background-color: rgb(33, 33, 241);
 }
 .select {
-  min-height: 50px;
+  min-height: 100px;
+  align-content: flex-end;
   /* border: 4px solid red; */
 }
 
@@ -29,23 +29,28 @@ body {
 #map {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   height: 70%;
-  width: 50%;
+  width: 60%;
   float: left;
   /* border: 4px solid rgb(166, 255, 0); */
 }
 
-#graph{
-  border: 4px solid green;
+#space {
   overflow: hidden;
+  height: 70%;
+  width: 2.5%; 
+}
+#graph{
+  /* border: 4px solid green; */
+  float: right;
   height: 35%;
-  width: 50%;
+  width: 37.5%;
   
 }
 
 #table{
-  border: 4px solid rgb(128, 0, 85);
+  /* border: 4px solid rgb(128, 0, 85); */
   height: 35%;
-  width: 50%;;
+  width: 37.5%;
   float: right;
 }
 
