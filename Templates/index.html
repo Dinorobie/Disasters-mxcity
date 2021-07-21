@@ -21,6 +21,7 @@
                 <a  href="#indicators" data-toggle="modal" data-target="#indicators">
                   <span class="glyphicon glyphicon-info-sign"></span>
                   About the indicators</a>
+                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#indicators">About the indicators</button>
               </li>
               <li>
                 <a  href="#us" data-toggle="modal" data-target="#us">
@@ -33,16 +34,14 @@
         
       </div>    
 
+
+
+
+
       <div class="col-md-12 text-center" id="header"> 
         <h1 >CDMX RISK ATLAS</h1>
         <h3>Use the interactive charts below to explore the exposition of each District to natural disasters</h3>
       </div>
-<!--      
-      <div class="select">
-        <h4>Select District:</h4>
-        <select id="selDataset"  style="width: 200px" >         
-        </select>
-      </div> -->
 
       
       <div id="map"></div>
@@ -74,11 +73,39 @@
               <th>Earthquakes</th>
             </tr>
           </thead>
-      </div>  
+  </div>  
       
 
 
-    </div>
+  <!-- <div class="modal fade in" id="indicators" role="dialog" style="display: block; padding-right: 17px;">
+   <div class="modal-dialog"> -->
+      <!-- Modal content-->
+		<!-- <div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">X</button>
+					<h2 class="modal-title">About the CDMX Risk Atlas</h2>
+			</div>
+        <div class="modal-body">
+			<h4>Data and Methodology</h4>
+			<p>The Atlas presents in a simple way, the degrees and/or indices of danger and vulnerability 
+        calculated by CENAPRED at the dictrict level. These values are the result of the simplification of the analysis on different threats, 
+        as well as of the characterization of some social phenomena, which contribute to evaluate the process of social construction of risk.
+        For the CDMX the construction of indicators is used the Bases for Standardization in the Elaboration of Risk Atlas (BEEAR) of the SEDATU.
+			</p>
+      <p>The data is available in <a href="https://datos.cdmx.gob.mx/pages/atlas-riesgo/" target="_blank">Datos abiertos CDMX</a>
+			</p>
+      <p>A national Risks Atlas is available in <a href="http://www.atlasnacionalderiesgos.gob.mx/archivo/indicadores-municipales.html" target="_blank">Indicadores Municipales de Peligro, Exposicion y Vulnerabilidad</a>
+			</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-basic" data-dismiss="modal">Close</button>
+        </div>
+		</div>
+      
+   </div>
+  </div> -->
+
+
     <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet-src.js"></script>
     <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
     
@@ -91,5 +118,5 @@
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
     
 
-  </body>
+</body>
 </html>
