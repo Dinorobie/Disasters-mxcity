@@ -25,7 +25,7 @@ body {
 #header {
   background-color: rgb(6, 5, 112);
   color: white;
-  height: 15%;
+  height: 12%;
   width: 100%;
 }
 
@@ -67,7 +67,7 @@ body {
 }
 
 #About {
-  display: block; 
+  display: none; 
   color:black
 }
 
