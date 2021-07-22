@@ -8,11 +8,19 @@ body {
   /* height of .navbar, customize with @navbar-height variable */
   padding-top: 40px;
 }
-.navbar {
+/* .navbar {
   min-height: 50px;
   background-color: rgb(33, 33, 241);
-}
+} */
 
+#bottons {
+  position: absolute;
+  top: 0px; left: 0px;
+  background-color: rgb(18, 44, 195);
+  color: black;
+  height: 5%;
+  width: 100%; 
+}
 
 #header {
   background-color: rgb(6, 5, 112);
@@ -58,7 +66,12 @@ body {
   float: right;
 }
 
+#About {
+  display: block; 
+  color:black
+}
 
 
-
-
+h4{
+  color: rgb(233, 152, 31)
+}

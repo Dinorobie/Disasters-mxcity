@@ -15,3 +15,31 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
   accessToken: API_KEY
 }).addTo(myMap);
 
+// Get the modal
+
+
+// // Get the button that opens the modal
+// var btn = d3.select("#modal1");
+
+// // Get the <span> element that closes the modal
+// //var span = document.getElementsByClassName("close")[0];
+
+// // When the user clicks on the button, open the modal
+// btn.onclick = function() {
+//   modal.style.display = "block";
+// }
+
+
+d3.selectAll("#modal1").on("click", modalstyle);
+
+function modalstyle(){
+  var modal = d3.selectAll("#About")
+  modal.style.display = "block";
+}
+
+d3.selectAll("#close").on("click", btnclose);
+
+function btnclose(){
+  var modal = d3.selectAll("#About")
+  modal.style.display = "none";
+}

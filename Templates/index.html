@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.label/leaflet.label.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
       <!-- Our CSS -->
     <link rel="stylesheet" type="text/css" href="static/css/style.css"> 
   </head>
@@ -13,28 +14,11 @@
   <body>
     
     <div id="container">
-      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li>
-                <a  href="#indicators" data-toggle="modal" data-target="#indicators">
-                  <span class="glyphicon glyphicon-info-sign"></span>
-                  About the indicators</a>
-                  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#indicators">About the indicators</button>
-              </li>
-              <li>
-                <a  href="#us" data-toggle="modal" data-target="#us">
-                  <span class="glyphicon glyphicon-question-sign"></span>
-                  About us</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-      </div>    
 
-
+      <div id="bottons">
+        <button id= "modal1" type="button" class="btn btn-info" data-toggle="modal" data-target="#About">About</button>
+        <button id= "modal2" type="button" class="btn btn-default" data-toggle="modal" data-target="#Contact">Contact us</button>     
+      </div>
 
 
 
@@ -49,62 +33,101 @@
       <div id="space"></div>
 
       <div class="select">
-        <h4>Select District:</h4>
+        <h4>Select Indicator:</h4>
         <select id="selDataset"  style="width: 200px" >         
         </select>
       </div>
 
       <div id="graph" > 
-        <h3>Graph</h3>
+        <h3>Bar-chart</h3>
       </div>
       
+      <div class="select">
+        <h4>Select District:</h4>
+        <select id="selDataset"  style="width: 200px" >         
+        </select>
+      </div>
       
 
-      <div id="table" > 
-        <table id="summary-table" class="table table-striped table-inverse">
-          <br>
-          <thead>
-            <tr>
-              <th>District</th>
-              <th>Population</th>
-              <th>Precipitation</th>
-              <th>Air contamination</th>
-              <th>Max Temperatures</th>
-              <th>Earthquakes</th>
-            </tr>
-          </thead>
+      <div id="pie" > 
+        <h3>Pie Chart</h3>
+      </div>
   </div>  
       
 
-
-  <!-- <div class="modal fade in" id="indicators" role="dialog" style="display: block; padding-right: 17px;">
-   <div class="modal-dialog"> -->
+<!-- About modal   -->
+<div class="modal fade in" id="About" role="dialog">
+  <div class="modal-dialog" role="document">
       <!-- Modal content-->
-		<!-- <div class="modal-content">
+		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">X</button>
 					<h2 class="modal-title">About the CDMX Risk Atlas</h2>
 			</div>
-        <div class="modal-body">
-			<h4>Data and Methodology</h4>
-			<p>The Atlas presents in a simple way, the degrees and/or indices of danger and vulnerability 
-        calculated by CENAPRED at the dictrict level. These values are the result of the simplification of the analysis on different threats, 
-        as well as of the characterization of some social phenomena, which contribute to evaluate the process of social construction of risk.
-        For the CDMX the construction of indicators is used the Bases for Standardization in the Elaboration of Risk Atlas (BEEAR) of the SEDATU.
-			</p>
-      <p>The data is available in <a href="https://datos.cdmx.gob.mx/pages/atlas-riesgo/" target="_blank">Datos abiertos CDMX</a>
-			</p>
-      <p>A national Risks Atlas is available in <a href="http://www.atlasnacionalderiesgos.gob.mx/archivo/indicadores-municipales.html" target="_blank">Indicadores Municipales de Peligro, Exposicion y Vulnerabilidad</a>
-			</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-basic" data-dismiss="modal">Close</button>
-        </div>
+      <div class="modal-body">
+			  <h4>Data</h4>
+			  <p>This dashboard presents in a simple way the degrees and/or indices of danger and vulnerability to 
+        natural disasters in CDMX at the dictrict level. The indicators were calculated by CENAPRED and the data is available in <a href="https://datos.cdmx.gob.mx/pages/atlas-riesgo/" target="_blank">Datos abiertos CDMX</a>.
+			  </p>
+        <p>The indices presented in this dashboard are: 
+        <ul>
+          <li>Precipitation: it measures ...</li>
+          <li>Temperatures: it measures ...</li>
+        </ul>
+        </p>  
+        <p> The colors represents the level of risk where:
+          <ul>
+            <li>Red: represents ... </li>
+            <li>White: represents ...</li>
+          </ul>
+			  </p>
+        
+        <p>For a National Risks Atlas you can look at the Mexican Government dashboard <a href="http://www.atlasnacionalderiesgos.gob.mx/archivo/indicadores-municipales.html" target="_blank">Indicadores Municipales de Peligro, Exposicion y Vulnerabilidad</a>,
+          where you can find the indicators by municipality. 
+			  </p>
+        <h4>Methodology</h4>
+        <p>To see how this dashboard was built you can visit our Github Repository <a href="https://github.com/Robie94/Disasters-mxcity" target="_blank"> Disasters-mxcity</a>,
+        where you will find the html, css, javascript, data and app.</p>
+
+        <h4>How to use the dashboard</h4>
+        <p> In this dashboard you can select:
+          <ul>
+            <li>Indices per AGEB: select a layer in the map</li>
+            <li> A comparison between districts per indice</li>
+            <li> A comparison of indice per district</li>
+          </ul>
+			  </p>
+        
+      </div>
+      <div class="modal-footer">
+          <button id= "close" type="button" class="btn btn-basic" data-dismiss="modal" onclick= "modalstyle()" >Close</button>
+      </div>
 		</div>
       
-   </div>
-  </div> -->
+  </div>
+</div> 
 
+<!-- Contact modal   -->
+<div class="modal fade in" id="Contact" role="dialog">
+  <div class="modal-dialog" role="document">
+      <!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+					<h2 class="modal-title">Contact us</h2>
+			</div>
+      <div class="modal-body">	  
+			<p>This project is part of the program in Data Analytics of Tec de Monterey.
+      </p> 
+      <h4>Contribuitors</h4>
+      <p>You can contact us:.
+      </p> 
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-basic" data-dismiss="modal">Close</button>
+      </div>
+		</div>
+      
+  </div>
+</div> 
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet-src.js"></script>
     <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
@@ -117,6 +140,6 @@
     <!-- Our CSS -->
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
     
-
+    <script src="https://d3js.org/d3.v5.min.js"></script>
 </body>
 </html>
