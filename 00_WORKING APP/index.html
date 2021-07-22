@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>CDMX Disaster - test HTML</title>
+
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.label/leaflet.label.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+      <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css"> 
+  </head>
+
+  <body>
+    
+    <div id="container">
+
+      <div id="bottons">
+        <button id= "modal1" type="button" class="btn btn-info" data-toggle="modal" data-target="#About">About</button>
+        <button id= "modal2" type="button" class="btn btn-default" data-toggle="modal" data-target="#Contact">Contact us</button>     
+      </div>
+
+
+
+      <div class="col-md-12 text-center" id="header"> 
+        <h1 >CDMX RISK ATLAS</h1>
+        <h3>Use the interactive charts below to explore the exposition of each District to natural disasters</h3>
+      </div>
+
+      
+      <div id="map"></div>
+
+      <div id="space"></div>
+
+      <div class="select">
+        <h4>Select Indicator:</h4>
+        <select id="selDataset"  style="width: 200px" >         
+        </select>
+      </div>
+
+      <div id="graph" > 
+        <h3>Bar-chart</h3>
+      </div>
+      
+      <div class="select">
+        <h4>Select District:</h4>
+        <select id="selDataset"  style="width: 200px" >         
+        </select>
+      </div>
+      
+
+      <div id="pie" > 
+        <h3>Pie Chart</h3>
+      </div>
+  </div>  
+      
+
+<!-- About modal   -->
+
+
+<!-- Contact modal   -->
+<div class="modal fade in" id="Contact" role="dialog">
+  <div class="modal-dialog" role="document">
+      <!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+					<h2 class="modal-title">Contact us</h2>
+			</div>
+      <div class="modal-body">	  
+			<p>This project is part of the program in Data Analytics of Tec de Monterey.
+      </p> 
+      <h4>Contribuitors</h4>
+      <p>You can contact us:.
+      </p> 
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-basic" data-dismiss="modal">Close</button>
+      </div>
+		</div>
+      
+  </div>
+</div> 
+
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet-src.js"></script>
+    <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
+    
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <!-- API Key -->
+    <script type="text/javascript" src="static/js/config.js"></script>
+
+  <!-- Our JavaScript -->
+  <script type="text/javascript" src="static/js/logic.js"></script>
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    
+    
+</body>
+</html>
