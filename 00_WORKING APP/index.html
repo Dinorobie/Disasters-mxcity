@@ -39,8 +39,14 @@
 
 
     <div class="select">
-      <select id="selDataset" style="width: 200px">
+      <select id="selDataset" style="width: 200px" onchange="optionChanged(this.value)">
         <option selected>Select an Indice</option>
+        <option value="Precipitacion">Precipitacion</option>
+        <option value="Granizo">Granizo</option>
+        <option value="Inundacion">Inundacion</option>
+        <option value="Laderas">Laderas</option>
+        <option value="Sismico">Sismico</option>
+        <option value="Tormenta">Tormenta</option> 
       </select>
     </div>
 

@@ -483,6 +483,256 @@ function barchart() {
   });
 };
 
+//////////////////////////////////////////////////////////////////////
+//Barplot
+// set the dimensions and margins of the graph
+function plotter(risk){
+  var margin = {top: 20, right: 100, bottom: 20, left: 30},
+      width = 750 - margin.left - margin.right,
+      height = 200 - margin.top - margin.bottom;
+  
+  // append the svg object to the body of the page
+  var svg = d3.select("#graph")
+    .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+  
+  // 
+  function filter_by_riesgo(riesgo){
+    var filtro;
+    if (riesgo === "Precipitacion"){
+      return filtro = "Riesgo_precipitacion";
+    }else if (riesgo === "Granizo"){
+      return filtro = "riesgo_granizo";
+    }
+    else if (riesgo === "Inundacion"){
+      return filtro = "riesgo_inundacion";
+    }else if (riesgo === "Laderas"){
+      return filtro = "riesgo_laderas";
+    }else if (riesgo === "Sismico"){
+      return filtro = "riesgo_sismico";
+    }else if (riesgo === "Tormenta"){
+      return filtro = "riesgo_tormentaElectrica";
+    }
+  
+  }
+  // Parse the Data
+  d3.json("Static/js/data.json", function(data2){
+    console.log(data2);
+    var filtro = filter_by_riesgo(risk);
+    //our subgroups
+    var subgroups = ["Muy Bajo","Bajo","Medio","Alto","Muy Alto"]
+    //Delegaciones, to load them dynamically based on selection
+    //Filter values by delegacion.
+  
+    //Calculate the json object with all the subgroups after it was filtered
+    var data = [{group:"Xoch","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Alva","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Azca","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Beni","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Coyo","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Cuaj","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Cuau","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Iztac","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Iztap","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Magda","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Migu","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Milp","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Tlah","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+                {group:"Venu","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0}
+              ];
+    for (i=0;i<data2.length;i++){
+      var alcaldia;
+      if (data2[i].properties.alcaldia === "lvaro Obregn"){
+        alcaldia = "Alva";
+      }else if (data2[i].properties.alcaldia === "Azcapotzalco"){
+        alcaldia = "Azca";
+      }else if (data2[i].properties.alcaldia === "Benito Jurez"){
+        alcaldia = "Beni";
+      }else if (data2[i].properties.alcaldia === "Coyoacn"){
+        alcaldia = "Coyo";
+      }else if (data2[i].properties.alcaldia === "Cuajimalpa de Morelos"){
+        alcaldia = "Cuaj";
+      }else if (data2[i].properties.alcaldia === "Cuauhtmoc"){
+        alcaldia = "Cuau";
+      }else if (data2[i].properties.alcaldia === "Iztacalco"){
+        alcaldia = "Iztac";
+      }else if (data2[i].properties.alcaldia === "Iztapalapa"){
+        alcaldia = "Iztap";
+      }else if (data2[i].properties.alcaldia === "La Magdalena Contreras"){
+        alcaldia = "Magda";
+      }else if (data2[i].properties.alcaldia === "Miguel Hidalgo"){
+        alcaldia = "Migu";
+      }else if (data2[i].properties.alcaldia === "Milpa Alta"){
+        alcaldia = "Milp";
+      }else if (data2[i].properties.alcaldia === "Tlhuac"){
+        alcaldia = "Tlah";
+      }else if (data2[i].properties.alcaldia === "Venustiano Carranza"){
+        alcaldia = "Venu";
+      }else if (data2[i].properties.alcaldia === "Xochimilco"){
+        alcaldia = "Xoch";
+      }
+    var tracker;
+      for (j=0;j<data.length;j++){
+        if (data[j].group === alcaldia ){
+          tracker = j;
+          break;
+        }
+      }
+    var riesgo_record = data2[i].properties[filtro]
+      data[tracker][riesgo_record] +=1
+      
+    }
+    console.log(data)
+    
+  
+    // Transpose the data into layers
+  var dataset = d3.layout.stack()(subgroups.map(function(grade) {
+    return data.map(function(d) {
+      return {x: d.group, y: +d[grade]};
+    });
+  }));
+  console.log("This is the dataset")
+  console.log(dataset)
+  
+  // Set x, y and colors
+  var x = d3.scale.ordinal()
+    .domain(dataset[0].map(function(d) { return d.x; }))
+    .rangeRoundBands([10, width-10], 0.02);
+  
+  var y = d3.scale.linear()
+    .domain([0, d3.max(dataset, function(d) {  return d3.max(d, function(d) { return d.y0 + d.y; });  })])
+    .range([height, 0]);
+  
+  var colors = ["moccasin", "orange", "orangered", "red","darkred"].reverse();
+  // Define and draw axes
+  var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(5)
+    .tickSize(-width, 0, 0)
+    .tickFormat( function(d) { return d } );
+  
+  var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom")
+    ;
+  
+  svg.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+  
+  svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis)
+  
+  
+  
+  
+  // Create groups for each series, rects for each segment 
+  var groupsx = svg.selectAll("g.cost")
+    .data(dataset)
+    .enter().append("g")
+    .attr("class", "cost")
+    .style("fill", function(d, i) { return colors[i]; });
+  
+  var tooltip = svg.append("g")
+    .attr("class", "tooltip")
+    .style("display", "none");
+      
+  tooltip.append("rect")
+    .attr("width", 30)
+    .attr("height", 20)
+    .attr("fill", "black")
+    .style("opacity", 0.5);
+  
+  tooltip.append("text")
+    .attr("x", 15)
+    .attr("dy", "1.2em")
+    .style("text-anchor", "middle")
+    .attr("font-size", "12px")
+    .attr("font-weight", "bold");
+  
+  var rect = groupsx.selectAll("rect")
+    .data(function(d) { return d; })
+    .enter()
+    .append("rect")
+    .attr("x", function(d) { return x(d.x); })
+    .attr("y", function(d) { return y(d.y0 + d.y); })
+    .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); })
+    .attr("width", x.rangeBand())
+    .on("mouseover", function() { tooltip.style("display",null); })
+    .on("mouseout", function() { tooltip.style("display", "none"); })
+    .on("mousemove", function(d) {
+      console.log("hover")
+      var xPosition = d3.mouse(this)[0] -15;
+      var yPosition = d3.mouse(this)[1] -5;
+      tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+      tooltip.select("text").text(d.y);
+    });
+  
+  
+  // Draw legend
+  var legend = svg.selectAll(".legend")
+    .data(colors)
+    .enter().append("g")
+    .attr("class", "legend")
+    .attr("transform", function(d, i) { return "translate(30," + i * 19 + ")"; });
+   
+  legend.append("rect")
+    .attr("x", width - 18)
+    .attr("width", 18)
+    .attr("height", 18)
+    .style("fill", function(d, i) {return colors.slice().reverse()[i];});
+   
+  legend.append("text")
+    .attr("x", width + 5)
+    .attr("y", 9)
+    .attr("dy", ".35em")
+    .style("text-anchor", "start")
+    .text(function(d, i) { 
+      switch (i) {
+        case 0: return "Muy Bajo";
+        case 1: return "Bajo";
+        case 2: return "Medio";
+        case 3: return "Alto";
+        case 4: return "Muy Alto";
+      }
+    });
+  // Prep the tooltip bits, initial display is hidden
+  
+    
+  var titulo = risk + " Risk Per Alcaldia"
+    svg.append("text")
+          .attr("x", (width / 2))             
+          .attr("y", 0 - (margin.top / 4))
+          .attr("text-anchor", "middle")  
+          .style("font-size", "16px") 
+          .style("text-decoration", "underline")  
+          .text(titulo);
+  
+  
+  })
+  }
+  function clearBox(elementID)
+  {
+      document.getElementById(elementID).innerHTML = "";
+  }
+  function optionChanged(risk) {
+    clearBox("graph")
+  
+    plotter(risk);
+  }
+  function init(){
+    plotter("Precipitacion")
+  }
+  init();
+
+
 barchart()
 
 //////////////////////////////////////////////////////////////////////
