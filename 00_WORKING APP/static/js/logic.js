@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////////////
+  // Use this link to get the geojson data.
+  var link_riesgos = "http://127.0.0.1:5000/agebs";
+  var link_alcaldias = "http://127.0.0.1:5000/alcaldias";
+
+  //////////////////////////////////////////////////////////////////////
+
 // Reactive Buttons 
 function modalstyleAbout(){
   console.log("You made click on button")
@@ -55,16 +62,16 @@ async function loadMap() {
   //   accessToken: API_KEY
   // });
 
-  // // Black and White View Tile (CARTO)
-  // var CARTO = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  //   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-  //   subdomains: 'abcd',
-  //   maxZoom: 19,
-  //   tileSize: 512,
-  //   zoomOffset: -1,
-  //   id: "mapbox/Carto",
-  //   accessToken: API_KEY
-  // });
+  // Black and White View Tile (CARTO)
+  var CARTO = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 19,
+    tileSize: 512,
+    zoomOffset: -1,
+    id: "mapbox/Carto",
+    accessToken: API_KEY
+  });
 
   // // Base Tile Controler
   // var baseMaps = {
@@ -74,10 +81,6 @@ async function loadMap() {
   // };
 
   //////////////////////////////////////////////////////////////////////
-
-  // Use this link to get the geojson data.
-  var link_riesgos = "http://127.0.0.1:5000/agebs";
-  var link_alcaldias = "http://127.0.0.1:5000/alcaldias";
 
   // // Function that will determine the color of a neighborhood based on the borough it belongs to
 
@@ -218,14 +221,14 @@ async function loadMap() {
   //////////////////////////////////////////////////////////////////////
   // Legend
 
-  var legend = L.control({ position: 'bottomleft' });
-  legend.onAdd = function () {
+  var legend = L.control({ position: 'topleft' });
+  legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'legend');
     var labels = ["Very Low", "Low", 'Medium', 'High', 'Very High'];
     var grades = ['Muy Bajo', 'Bajo', 'Medio', 'Alto', 'Muy Alto'];
-    div.innerHTML = '<div><b>Legend</b></div';
+    div.innerHTML = '<div><h3 style="background:white">Risk Lvl.</h3></div';
     for (var i = 0; i < grades.length; i++) {
-      div.innerHTML += '<b style="background:' + chooseColor(grades[i]) + ' ">&nbsp;</b>&nbsp;&nbsp;' + labels[i] + '<br/>';
+      div.innerHTML += '<b style="font-size:10px ; background:' + chooseColor(grades[i]) + ' ">&nbsp;</b>&nbsp;&nbsp;<strong style="font-size:15px;background:white">' + labels[i] + '</strong><br/>';
     }
     return div;
   }
@@ -236,15 +239,20 @@ async function loadMap() {
 
 loadMap();
 
+
+//////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
 // Creating the alcadias charts
 d3.selectAll("#selalcaldia").on("change",barchart);
 
 var alcaldias = []
-d3.json("data.json").then((data) => {
-  console.log(data);
-  data.forEach(d => {
+d3.json(link_riesgos).then((data) => {
+
+  console.log('HelloO!')
+  console.log(data[0]['features']);
+
+  data[0]['features'].forEach(d => {
     var alcaldia = d.properties.alcaldia;
     if (!alcaldias.includes(alcaldia)) {
       alcaldias.push(alcaldia)
@@ -263,45 +271,16 @@ function barchart() {
   var dropdownMenu = d3.select("#selalcaldia");
   var selectedOption = dropdownMenu.property("value");
   console.log(selectedOption);
-  var precipitacion = []
-  var granizo = []
-  var inundacion = []
-  var laderas = []
-  var sismos = []
-  var tormenta = []
-  var p_mb = []
-  var p_b = []
-  var p_m = []
-  var p_a = []
-  var p_ma = []
-  var g_mb = []
-  var g_b = []
-  var g_m = []
-  var g_a = []
-  var g_ma = []
-  var i_mb = []
-  var i_b = []
-  var i_m = []
-  var i_a = []
-  var i_ma = []
-  var l_mb = []
-  var l_b = []
-  var l_m = []
-  var l_a = []
-  var l_ma = []
-  var s_mb = []
-  var s_b = []
-  var s_m = []
-  var s_a = []
-  var s_ma = []
-  var t_mb = []
-  var t_b = []
-  var t_m = []
-  var t_a = []
-  var t_ma = []
+  var precipitacion = [], granizo = [], inundacion = [], laderas = [], sismos = [], tormenta = []
+  var p_mb = [],p_b = [],p_m = [],p_a = [],p_ma = []
+  var g_mb = [],g_b = [],g_m = [],g_a = [],g_ma = []
+  var i_mb = [],i_b = [],i_m = [],i_a = [],i_ma = []
+  var l_mb = [],l_b = [],l_m = [],l_a = [],l_ma = []
+  var s_mb = [],s_b = [],s_m = [],s_a = [],s_ma = []
+  var t_mb = [],t_b = [],t_m = [],t_a = [],t_ma = []
 
-  d3.json("data.json").then((data) => {
-    data.forEach(d => {
+  d3.json(link_riesgos).then((data) => {
+    data[0]['features'].forEach(d => {
       var prep = d.properties.Riesgo_precipitacion;
       var gran = d.properties.riesgo_granizo;
       var inu = d.properties.riesgo_inundacion;
