@@ -67,7 +67,7 @@ body {
 }
 
 #About {
-  display: none; 
+  display: block; 
   color:black
 }
 

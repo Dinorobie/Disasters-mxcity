@@ -28,18 +28,29 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 // btn.onclick = function() {
 //   modal.style.display = "block";
 // }
-
-
-d3.selectAll("#modal1").on("click", modalstyle);
-
-function modalstyle(){
-  var modal = d3.selectAll("#About")
-  modal.style.display = "block";
+function modalstyleAbout(){
+  console.log("You made click on button")
+  var modal = d3.selectAll("#About").style("display", "block")
 }
 
-d3.selectAll("#close").on("click", btnclose);
-
-function btnclose(){
-  var modal = d3.selectAll("#About")
-  modal.style.display = "none";
+function modalstyleContact(){
+  console.log("You made click on button")
+  var modal = d3.selectAll("#Contact").style("display", "block")
 }
+
+function btncloseAbout(){
+  console.log("You made click on close")
+  var modal = d3.selectAll("#About").style("display", "none")
+}
+
+function btncloseContact(){
+  console.log("You made click on close")
+  var modal = d3.selectAll("#Contact").style("display", "none")
+}
+
+d3.selectAll("#modal1").on("click", modalstyleAbout);
+d3.selectAll("#modal2").on("click", modalstyleContact);
+
+d3.selectAll("#close1").on("click", btncloseAbout);
+d3.selectAll("#close2").on("click", btncloseContact);
+

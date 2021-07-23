@@ -1,3 +1,33 @@
+// Reactive Buttons 
+function modalstyleAbout(){
+  console.log("You made click on button")
+  var modal = d3.selectAll("#About").style("display", "block")
+}
+
+function modalstyleContact(){
+  console.log("You made click on button")
+  var modal = d3.selectAll("#Contact").style("display", "block")
+}
+
+function btncloseAbout(){
+  console.log("You made click on close")
+  var modal = d3.selectAll("#About").style("display", "none")
+}
+
+function btncloseContact(){
+  console.log("You made click on close")
+  var modal = d3.selectAll("#Contact").style("display", "none")
+}
+
+d3.selectAll("#modal1").on("click", modalstyleAbout);
+d3.selectAll("#modal2").on("click", modalstyleContact);
+
+d3.selectAll("#close1").on("click", btncloseAbout);
+d3.selectAll("#close2").on("click", btncloseContact);
+
+//////////////////////////////////////////////////////////////////////
+
+
 // Creating map object
 
 async function loadMap() {
@@ -205,3 +235,5 @@ async function loadMap() {
 //////////////////////////////////////////////////////////////////////
 
 loadMap();
+
+
