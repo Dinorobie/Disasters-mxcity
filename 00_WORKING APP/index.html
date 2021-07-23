@@ -35,9 +35,10 @@
 
       <div id="space"></div>
 
+      
       <div class="select">
-        <h4>Select Indicator:</h4>
-        <select id="selDataset"  style="width: 200px" >         
+        <select id="selDataset"  style="width: 200px" >
+          <option selected>Select an Indice</option>         
         </select>
       </div>
 
@@ -45,16 +46,13 @@
         <h3>Bar-chart</h3>
       </div>
       
-      <div class="select">
-        <h4>Select District:</h4>
-        <select id="selDataset"  style="width: 200px" >         
-        </select>
-      </div>
+      <select class="form-select" id="selalcaldia"  style="width: 200px" > 
+        <option>Select a District</option>
+        <!-- <option>Azcapotzalco</option> -->
+      </select>
       
 
-      <div id="pie" > 
-        <h3>Pie Chart</h3>
-      </div>
+      <div id="district-chart" ></div>
   </div>  
       
 
@@ -145,7 +143,8 @@
     <script src="http://leaflet.github.io/Leaflet.label/leaflet.label.js"></script>
   <!--D3-->
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    
+ <!--Plotly-->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <!-- API Key -->
     <script type="text/javascript" src="static/js/config.js"></script>
   <!-- Our JavaScript -->
