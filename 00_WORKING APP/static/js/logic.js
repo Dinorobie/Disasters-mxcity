@@ -236,4 +236,274 @@ async function loadMap() {
 
 loadMap();
 
+//////////////////////////////////////////////////////////////////////
 
+// Creating the alcadias charts
+d3.selectAll("#selalcaldia").on("change",barchart);
+
+var alcaldias = []
+d3.json("data.json").then((data) => {
+  console.log(data);
+  data.forEach(d => {
+    var alcaldia = d.properties.alcaldia;
+    if (!alcaldias.includes(alcaldia)) {
+      alcaldias.push(alcaldia)
+    };
+  });
+  var dropdownMenu = d3.select("#selalcaldia");
+    alcaldias.forEach((i) => {
+      dropdownMenu
+        .append("option")
+        .text(i)
+        .property("value", i)
+    });
+});
+
+function barchart() {
+  var dropdownMenu = d3.select("#selalcaldia");
+  var selectedOption = dropdownMenu.property("value");
+  console.log(selectedOption);
+  var precipitacion = []
+  var granizo = []
+  var inundacion = []
+  var laderas = []
+  var sismos = []
+  var tormenta = []
+  var p_mb = []
+  var p_b = []
+  var p_m = []
+  var p_a = []
+  var p_ma = []
+  var g_mb = []
+  var g_b = []
+  var g_m = []
+  var g_a = []
+  var g_ma = []
+  var i_mb = []
+  var i_b = []
+  var i_m = []
+  var i_a = []
+  var i_ma = []
+  var l_mb = []
+  var l_b = []
+  var l_m = []
+  var l_a = []
+  var l_ma = []
+  var s_mb = []
+  var s_b = []
+  var s_m = []
+  var s_a = []
+  var s_ma = []
+  var t_mb = []
+  var t_b = []
+  var t_m = []
+  var t_a = []
+  var t_ma = []
+
+  d3.json("data.json").then((data) => {
+    data.forEach(d => {
+      var prep = d.properties.Riesgo_precipitacion;
+      var gran = d.properties.riesgo_granizo;
+      var inu = d.properties.riesgo_inundacion;
+      var lad = d.properties.riesgo_laderas;
+      var sis = d.properties.riesgo_sismico;
+      var tor = d.properties.riesgo_tormentaElectrica;
+
+      if (selectedOption == d.properties.alcaldia) {
+        precipitacion.push(prep)
+        granizo.push(gran)
+        inundacion.push(inu)
+        laderas.push(lad)
+        sismos.push(sis)
+        tormenta.push(tor)
+      };
+    });
+
+    // console.log(laderas)
+
+    precipitacion.forEach((i) => {
+      if (i == "Muy Bajo") {
+        p_mb.push(i)
+      }
+      else if (i == "Bajo") {
+        p_b.push(i)
+      }
+      else if (i == "Medio") {
+        p_m.push(i)
+      }
+      else if (i == "Alto") {
+        p_a.push(i)
+      }
+      else if (i == "Muy Alto") {
+        p_ma.push(i)
+      }
+    });
+
+    granizo.forEach((i) => {
+      if (i == "Muy Bajo") {
+        g_mb.push(i)
+      }
+      else if (i == "Bajo") {
+        g_b.push(i)
+      }
+      else if (i == "Medio") {
+        g_m.push(i)
+      }
+      else if (i == "Alto") {
+        g_a.push(i)
+      }
+      else if (i == "Muy Alto") {
+        g_ma.push(i)
+      }
+    });
+
+    inundacion.forEach((i) => {
+      if (i == "Muy Bajo") {
+        i_mb.push(i)
+      }
+      else if (i == "Bajo") {
+        i_b.push(i)
+      }
+      else if (i == "Medio") {
+        i_m.push(i)
+      }
+      else if (i == "Alto") {
+        i_a.push(i)
+      }
+      else if (i == "Muy Alto") {
+        i_ma.push(i)
+      }
+    });
+
+    laderas.forEach((i) => {
+      if (i == "Muy Bajo") {
+        l_mb.push(i)
+      }
+      else if (i == "Bajo") {
+        l_b.push(i)
+      }
+      else if (i == "Medio") {
+        l_m.push(i)
+      }
+      else if (i == "Alto") {
+        l_a.push(i)
+      }
+      else if (i == "Muy Alto") {
+        l_ma.push(i)
+      }
+    });
+
+    sismos.forEach((i) => {
+      if (i == "Muy Bajo") {
+        s_mb.push(i)
+      }
+      else if (i == "Bajo") {
+        s_b.push(i)
+      }
+      else if (i == "Medio") {
+        s_m.push(i)
+      }
+      else if (i == "Alto") {
+        s_a.push(i)
+      }
+      else if (i == "Muy Alto") {
+        s_ma.push(i)
+      }
+    });
+
+    tormenta.forEach((i) => {
+      if (i == "Muy Bajo") {
+        t_mb.push(i)
+      }
+      else if (i == "Bajo") {
+        t_b.push(i)
+      }
+      else if (i == "Medio") {
+        t_m.push(i)
+      }
+      else if (i == "Alto") {
+        t_a.push(i)
+      }
+      else if (i == "Muy Alto") {
+        t_ma.push(i)
+      }
+    });
+    
+    
+      var indices= ["Precipitación", "Granizo", "Inundación", "Laderas", "Sismos", "Tormenta E"] 
+      var y1 = [p_mb.length/precipitacion.length*100, g_mb.length/granizo.length*100, i_mb.length/inundacion.length*100, l_mb.length/laderas.length*100, s_mb.length/sismos.length*100, t_mb.length/tormenta.length*100]
+      var y2= [p_b.length/precipitacion.length*100, g_b.length/granizo.length*100, i_b.length/inundacion.length*100, l_b.length/laderas.length*100, s_b.length/sismos.length*100, t_b.length/tormenta.length*100]
+      var y3= [p_m.length/precipitacion.length*100, g_m.length/granizo.length*100, i_m.length/inundacion.length*100, l_m.length/laderas.length*100, s_m.length/sismos.length*100, t_m.length/tormenta.length*100]
+      var y4= [p_a.length/precipitacion.length*100, g_a.length/granizo.length*100, i_a.length/inundacion.length*100, l_a.length/laderas.length*100, s_a.length/sismos.length*100, t_a.length/tormenta.length*100]
+      var y5= [p_ma.length/precipitacion.length*100, g_ma.length/granizo.length*100, i_ma.length/inundacion.length*100, l_ma.length/laderas.length*100, s_ma.length/sismos.length*100, t_ma.length/tormenta.length*100] 
+      var trace1={
+        x: indices,
+        y: y1,
+        name: "Muy Bajo",
+        type: "bar",
+        marker: {
+          color: 'rgb(255,228,181)',
+          opacity: 0.7
+        }
+      }
+
+      var trace2={
+        x: indices,
+        y: y2,
+        name: "Bajo",
+        type: "bar",
+        marker: {
+          color: 'rgb(255,165,0)',
+          opacity: 0.7
+        }
+      }
+
+      var trace3={
+        x: indices,
+        y: y3,
+        name: "Medio",
+        type: "bar",
+        marker: {
+          color: 'rgb(255,69,0)',
+          opacity: 0.7
+        }
+      }
+
+      var trace4={
+        x: indices,
+        y: y4,
+        name: "Alto",
+        type: "bar",
+        marker: {
+          color: 'rgb(255,0,0)',
+          opacity: 0.7
+        }
+      }
+
+      var trace5={
+        x: indices,
+        y: y5,
+        name: "Muy Alto",
+        type: "bar",
+        marker: {
+          color: 'rgb(139,0,0)',
+          opacity: 0.7
+        }
+      }
+
+      var data=[trace1, trace2, trace3, trace4, trace5]
+      var layout= {
+        barmode: 'stack',
+        xaxis: {
+          tickangle: 0
+        },
+      };
+      Plotly.newPlot("district-chart", data, layout);
+    
+    
+  });
+};
+
+barchart()
+
+//////////////////////////////////////////////////////////////////////
