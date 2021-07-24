@@ -78,3 +78,25 @@ body {
 h4{
   color: rgb(233, 152, 31)
 }
+
+svg {
+  font: 10px sans-serif;
+  shape-rendering: crispEdges;
+  z-index: 0;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+}
+
+path.domain {
+  stroke: none;
+}
+
+.y .tick line {
+  stroke: #ddd;
+}
+.tooltip {
+position: absolute;
+}

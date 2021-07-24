@@ -14,6 +14,7 @@
   <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
   <!-- D3 -->
   <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
   <!-- Our CSS -->
   <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
@@ -40,7 +41,7 @@
 
     <div class="select">
       <select id="selDataset" style="width: 200px" onchange="optionChanged(this.value)">
-        <option selected>Select an Indice</option>
+        <option selected>Precipitacion</option>
         <option value="Precipitacion">Precipitacion</option>
         <option value="Granizo">Granizo</option>
         <option value="Inundacion">Inundacion</option>
@@ -51,7 +52,6 @@
     </div>
 
     <div id="graph">
-      <h3>Bar-chart</h3>
     </div>
 
     <select class="form-select" id="selalcaldia" style="width: 200px">
