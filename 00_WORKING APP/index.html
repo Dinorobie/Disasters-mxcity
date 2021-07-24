@@ -13,8 +13,8 @@
   <!-- JS-->
   <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
   <!-- D3 -->
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <!-- <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
+  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+  <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <!-- Our CSS -->
   <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
@@ -29,7 +29,7 @@
     </div>
     
     <div class="col-md-12 text-center" id="header">
-      <h2>MEXICO CITY RISK MAP</h2>
+      <h2>MEXICO CITY NATURAL DISASTER RISK MAP</h2>
       <p>Use the interactive charts below to explore the exposure of each District to natural disasters</p>
     </div>
 
@@ -39,25 +39,27 @@
     <div id="space"></div>
 
 
-    <div class="select">
+    <div class="select1">
+      <h4 style= "display:inline-block">Compare Districts by Risk</h4> 
       <select id="selDataset" style="width: 200px" onchange="optionChanged(this.value)">
-        <option selected>Precipitacion</option>
-        <option value="Precipitacion">Precipitacion</option>
-        <option value="Granizo">Granizo</option>
-        <option value="Inundacion">Inundacion</option>
-        <option value="Laderas">Laderas</option>
-        <option value="Sismico">Sismico</option>
-        <option value="Tormenta">Tormenta</option> 
+        <option selected value="Precipitacion">Rain Risk</option>
+        <option value="Granizo">Hailstorm Risk</option>
+        <option value="Inundacion">Floods Risk</option>
+        <option value="Laderas">Landslides Risk</option>
+        <option value="Sismico">Earthquake Risk</option>
+        <option value="Tormenta">Electric Storm Risk</option> 
       </select>
     </div>
 
     <div id="graph">
     </div>
 
-    <select class="form-select" id="selalcaldia" style="width: 200px">
-      <option>Iztapalapa</option>
-      <!-- <option>Azcapotzalco</option> -->
-    </select>
+    <div class="select2">
+      <h4 style= "display:inline-block">Compare Risks by District</h4> 
+      <select class="form-select" id="selalcaldia"  style="width: 200px" > 
+        <option>Azcapotzalco</option>
+      </select>
+    </div>
 
 
     <div id="district-chart"></div>
@@ -70,7 +72,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title">About the CDMX Risk Atlas</h2>
+          <h2 class="modal-title">Welcome to Mexico City Natural Disaster Risk Map!</h2>
         </div>
         <div class="modal-body">
           <h4>Data</h4>
@@ -79,35 +81,35 @@
             available in <a href="https://datos.cdmx.gob.mx/pages/atlas-riesgo/" target="_blank">Datos abiertos
               CDMX</a>.
           </p>
-          <p>The indices presented in this dashboard are:
+          <p>The natural disaster variables presented in this dashboard are:
           <ul>
-            <li>Precipitation: it measures ...</li>
-            <li>Temperatures: it measures ...</li>
+            <li>Rain Risk</li>
+            <li>Flood Risk</li>
+            <li>Hailstorm Risk</li>
+            <li>Electric Storm Risk</li>
+            <li>Landslides Risk</li>
+            <li>Earthquake Risk</li>
           </ul>
           </p>
-          <p> The colors represents the level of risk where:
-          <ul>
-            <li>Red: represents ... </li>
-            <li>White: represents ...</li>
-          </ul>
+          <p> The risk levels values are: Very Low, Low, Medium, High and Very High.
           </p>
 
           <p>For a National Risks Atlas you can look at the Mexican Government dashboard <a
               href="http://www.atlasnacionalderiesgos.gob.mx/archivo/indicadores-municipales.html"
               target="_blank">Indicadores Municipales de Peligro, Exposicion y Vulnerabilidad</a>,
-            where you can find the indicators by municipality.
+            where you can find the indicators by municipality for the entire country.
           </p>
           <h4>Methodology</h4>
           <p>To see how this dashboard was built you can visit our Github Repository <a
               href="https://github.com/Robie94/Disasters-mxcity" target="_blank"> Disasters-mxcity</a>,
-            where you will find the html, css, javascript, data and app.</p>
+            where you will find the ETL, HTML, CSS, JS, data and app.</p>
 
           <h4>How to use the dashboard</h4>
-          <p> In this dashboard you can select:
+          <p> In this dashboard you can visualize:
           <ul>
-            <li>Indices per AGEB: select a layer in the map</li>
-            <li> A comparison between districts per indice</li>
-            <li> A comparison of indice per district</li>
+            <li>Risk variables by census tract: visualize each census tract for Mexico City in interactive map </li>
+            <li>Comparison of different by District for different selected natural disaster variables</li>
+            <li>Comparison of different natural disaster risk levels within a selected District</li>
           </ul>
           </p>
 

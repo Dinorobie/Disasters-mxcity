@@ -200,12 +200,12 @@ async function loadMap() {
 
   // // Layer Selector
   var layerMaps = {
-    'Riesgo por Precipitaciones': riesgo_precipitacion,
-    'Riesgo por Inundaciones': riesgo_inundacion,
-    'Riesgo por Tormenta Eléctrica': riesgo_tormentaElectrica,
-    'Riesgo por Granizo': riesgo_granizo,
-    'Riesgo por Derrumbe de Laderas': riesgo_laderas,
-    'Riesgo Sismico': riesgo_sismico
+    'Rain Risk': riesgo_precipitacion,
+    'Flood Risk': riesgo_inundacion,
+    'Electric Storm Risk': riesgo_tormentaElectrica,
+    'Hailstorm Risk': riesgo_granizo,
+    'Landslide Risk': riesgo_laderas,
+    'Earthquake Risk': riesgo_sismico
   };
 
   //////////////////////////////////////////////////////////////////////
@@ -409,7 +409,7 @@ function barchart() {
     });
 
 
-    var indices = ["Precipitación", "Granizo", "Inundación", "Laderas", "Sismos", "Tormenta E"]
+    var indices= ["Rain", "Hailstorm", "Floods", "Lanslides", "Earthquakes", "Electric Storm"] 
     var y1 = [p_mb.length / precipitacion.length * 100, g_mb.length / granizo.length * 100, i_mb.length / inundacion.length * 100, l_mb.length / laderas.length * 100, s_mb.length / sismos.length * 100, t_mb.length / tormenta.length * 100]
     var y2 = [p_b.length / precipitacion.length * 100, g_b.length / granizo.length * 100, i_b.length / inundacion.length * 100, l_b.length / laderas.length * 100, s_b.length / sismos.length * 100, t_b.length / tormenta.length * 100]
     var y3 = [p_m.length / precipitacion.length * 100, g_m.length / granizo.length * 100, i_m.length / inundacion.length * 100, l_m.length / laderas.length * 100, s_m.length / sismos.length * 100, t_m.length / tormenta.length * 100]
@@ -418,55 +418,55 @@ function barchart() {
     var trace1 = {
       x: indices,
       y: y1,
-      name: "Muy Bajo",
+      name: "Very Low",
       type: "bar",
       marker: {
         color: 'rgb(255,228,181)',
-        opacity: 0.7
+        opacity: 1
       }
     }
 
     var trace2 = {
       x: indices,
       y: y2,
-      name: "Bajo",
+      name: "Low",
       type: "bar",
       marker: {
         color: 'rgb(255,165,0)',
-        opacity: 0.7
+        opacity: 1
       }
     }
 
     var trace3 = {
       x: indices,
       y: y3,
-      name: "Medio",
+      name: "Medium",
       type: "bar",
       marker: {
         color: 'rgb(255,69,0)',
-        opacity: 0.7
+        opacity: 1
       }
     }
 
     var trace4 = {
       x: indices,
       y: y4,
-      name: "Alto",
+      name: "High",
       type: "bar",
       marker: {
         color: 'rgb(255,0,0)',
-        opacity: 0.7
+        opacity: 1
       }
     }
 
     var trace5 = {
       x: indices,
       y: y5,
-      name: "Muy Alto",
+      name: "Very High",
       type: "bar",
       marker: {
         color: 'rgb(139,0,0)',
-        opacity: 0.7
+        opacity: 1
       }
     }
 
@@ -476,6 +476,13 @@ function barchart() {
       xaxis: {
         tickangle: 0
       },
+      autosize: false,
+        margin: {
+          l: 50,
+          r: 50,
+          b: 150,
+          t: 0
+        }
     };
     Plotly.newPlot("district-chart", data, layout);
 
@@ -489,8 +496,8 @@ function barchart() {
 function plotter(risk) {
 
   var margin = { top: 20, right: 100, bottom: 20, left: 30 },
-    width = 750 - margin.left - margin.right,
-    height = 200 - margin.top - margin.bottom;
+    width = 670 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
 
   // append the svg object to the body of the page
   var svg = d3.select("#graph")
@@ -603,6 +610,7 @@ function plotter(risk) {
 
     // Transpose the data into layers
     var dataset = d3.layout.stack()(subgroups.map(function (grade) {
+      console.log('----------Holaaa --------------')
       return data.map(function (d) {
         return { x: d.group, y: +d[grade] };
       });
@@ -619,18 +627,16 @@ function plotter(risk) {
       .domain([0, d3.max(dataset, function (d) { return d3.max(d, function (d) { return d.y0 + d.y; }); })])
       .range([height, 0]);
 
-    var colors = ["moccasin", "orange", "orangered", "red", "darkred"].reverse();
+    var colors = ["moccasin", "orange", "orangered", "red", "darkred"];
     // Define and draw axes
-    var yAxis = d3.svg.axis()
+    var yAxis = d3.axisLeft()
       .scale(y)
-      .orient("left")
       .ticks(5)
       .tickSize(-width, 0, 0)
       .tickFormat(function (d) { return d });
 
-    var xAxis = d3.svg.axis()
+    var xAxis = d3.axisBottom()
       .scale(x)
-      .orient("bottom")
       ;
 
     svg.append("g")
@@ -715,14 +721,14 @@ function plotter(risk) {
     // Prep the tooltip bits, initial display is hidden
 
 
-    var titulo = risk + " Risk Per Alcaldia"
-    svg.append("text")
-      .attr("x", (width / 2))
-      .attr("y", 0 - (margin.top / 4))
-      .attr("text-anchor", "middle")
-      .style("font-size", "16px")
-      .style("text-decoration", "underline")
-      .text(titulo);
+    // var titulo = risk + " Risk Per Alcaldia"
+    // svg.append("text")
+    //   .attr("x", (width / 2))
+    //   .attr("y", 0 - (margin.top / 4))
+    //   .attr("text-anchor", "middle")
+    //   .style("font-size", "16px")
+    //   .style("text-decoration", "underline")
+    //   .text(titulo);
 
 
   })
