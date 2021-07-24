@@ -478,10 +478,10 @@ function barchart() {
       },
       autosize: false,
         margin: {
-          l: 50,
-          r: 50,
+          l: 25,
+          r: 200,
           b: 150,
-          t: 0
+          t: 50
         }
     };
     Plotly.newPlot("district-chart", data, layout);
@@ -543,21 +543,23 @@ function plotter(risk) {
     //Filter values by delegacion.
 
     //Calculate the json object with all the subgroups after it was filtered
-    var data = [{ group: "Xoch", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Alva", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Azca", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Beni", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Coyo", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Cuaj", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Cuau", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Iztac", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Iztap", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Magda", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Migu", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Milp", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Tlah", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 },
-    { group: "Venu", "Muy Bajo": 0, "Bajo": 0, "Medio": 0, "Alto": 0, "Muy Alto": 0 }
-    ];
+    var data = [{group:"Alva","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Azca","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Beni","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Coyo","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Cuaj","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Cuau","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Gust","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Iztac","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Iztap","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Magda","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Migu","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Milp","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Tlah","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Tlal","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Venu","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0},
+              {group:"Xoch","Muy Bajo":0,"Bajo":0,"Medio":0,"Alto":0,"Muy Alto":0}
+            ];
 
     console.log('-----------------')
     console.log(data)
@@ -593,6 +595,10 @@ function plotter(risk) {
         alcaldia = "Venu";
       } else if (data2[i].properties.alcaldia === "Xochimilco") {
         alcaldia = "Xoch";
+      } else if (data2[i].properties.alcaldia === "Tlalpan"){
+        alcaldia = "Tlal";
+      } else if (data2[i].properties.alcaldia === "Gustavo A. Madero"){
+        alcaldia = "Gust";
       }
       var tracker;
       for (j = 0; j < data.length; j++) {
@@ -676,10 +682,10 @@ function plotter(risk) {
       .data(function (d) { return d; })
       .enter()
       .append("rect")
-      .attr("x", function (d) { return x(d.x); })
+      .attr("x", function (d) { return x(d.x) - 10; })
       .attr("y", function (d) { return y(d.y0 + d.y); })
       .attr("height", function (d) { return y(d.y0) - y(d.y0 + d.y); })
-      .attr("width", x.rangeBand())
+      .attr("width", x.rangeBand() - 10)
       .on("mouseover", function () { tooltip.style("display", null); })
       .on("mouseout", function () { tooltip.style("display", "none"); })
       .on("mousemove", function (d) {
@@ -711,11 +717,11 @@ function plotter(risk) {
       .style("text-anchor", "start")
       .text(function (d, i) {
         switch (i) {
-          case 0: return "Muy Bajo";
-          case 1: return "Bajo";
-          case 2: return "Medio";
-          case 3: return "Alto";
-          case 4: return "Muy Alto";
+          case 0: return "Very High";
+          case 1: return "High";
+          case 2: return "Medium";
+          case 3: return "Low";
+          case 4: return "Very Low";
         }
       });
     // Prep the tooltip bits, initial display is hidden
