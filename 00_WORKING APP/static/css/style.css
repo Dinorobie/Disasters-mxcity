@@ -52,11 +52,11 @@ body {
   float: right;
   height: 5%;
   width: 39%;
-  border: 4px solid red;
+  /* border: 4px solid red; */
 }
 
 #graph{
-  border: 4px solid green;
+  /* border: 4px solid green; */
   float: right;
   height: 38%;
   width: 39%;
@@ -67,11 +67,11 @@ body {
   float: right;
   height: 5%;
   width: 39%;
-  border: 4px solid red;
+  /* border: 4px solid red; */
 }
 
 #district-chart{
-  border: 4px solid rgb(128, 0, 85);
+  /* border: 4px solid rgb(128, 0, 85); */
   height: 38%;
   width: 39%;
   float: right;
