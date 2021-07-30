@@ -1,5 +1,5 @@
 # Understand which districts in Mexico city are most affected by natural disasters?
-
+![Florida-Storm-Hurricane](https://user-images.githubusercontent.com/67658859/127678541-614f704e-a339-400f-82a2-80aef5e9345b.jpeg)
 ### One Page Proposal
 See proposal in the following [link](https://docs.google.com/document/d/1WIOOm4lWvFd_a9CCHu4QNSxHMevvZVGi5_qcfAHP77A/edit?usp=sharing)
 ### Context
